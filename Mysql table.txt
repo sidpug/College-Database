@@ -1,0 +1,107 @@
+create database college;
+use college;
+
+create table department
+(Teacher_ID BigInt(20) primary key,
+Dept_name varchar(20) Not Null,
+Teacher_name varchar(30) Not Null,
+Designation varchar(30) Not Null,
+Class_teacher varchar(20),
+Mob_no BigInt(10) Not Null
+);
+desc department;
+
+insert into department values
+("1","CSE","Mr.X","HOD",Null,9660129433);
+select * from department;
+
+
+
+
+create table student
+(USN varchar(10) primary key,
+Stu_name varchar(30) Not Null,
+Reg_no varchar(20) Not Null,
+YOA date Not Null,
+Branch varchar(20) Not Null,
+Sem integer(2) Not Null,
+Sec varchar(1),
+Mob_no BigInt(10),
+C_Year Integer(4),
+email varchar(30)
+);
+desc student;
+ 
+insert into student values
+("1AH18CS008", "Aman","4545645454",'18.07.21',"CSE","5","A","9660456433","2020","xyz@gmail.com");
+select * from student;
+
+
+
+
+
+
+create table accsec
+(USN varchar(10) Not Null,
+foreign key(USN) references student(USN) on delete cascade,
+Stu_name varchar(30) Not Null,
+Year Integer(4),
+DOR date Not Null,
+Mob_no BigInt(10) Not Null,
+Fees float default 0,
+Balance float default 0
+);
+desc accsec;
+
+insert into accsec values
+("1AH18CS008","Aman",2018,'18.07.21',"9660456433",0,0);
+select * from accsec;
+
+
+
+
+create table library
+(USN varchar(10) Not Null,
+foreign key(USN) references student(USN) on delete cascade,
+Name varchar(30) Not Null,
+Bookno varchar(20) Not Null,
+Book_name varchar(30) Not Null,
+Issue_date date Not Null,
+Return_date date Not Null
+);
+desc library;
+
+insert into library values
+("1AH18CS008","Aman","456212","xyz",'19.12.21','19.12.31');
+select * from library;
+ 
+
+
+
+create table result
+(USN varchar(10) Not Null,
+foreign key(USN) references student(USN) on delete cascade,
+sem integer(10) Not Null,
+Total_marks float Not Null,
+Obtain_marks float Not Null,
+sgpa float Not Null
+);
+desc result;
+
+insert into result values
+("1AH18CS008",4,800,700,8.8);
+select * from result;
+
+
+
+create table Signup
+(UserId varchar(30) Primary Key,
+Name varchar(30) Not Null,
+Password varchar(30) Not Null,
+category varchar(20) Not Null
+);
+desc Signup;
+
+insert into signup values("abcd","ghjk","789","Admin");
+select * from signup;
+
